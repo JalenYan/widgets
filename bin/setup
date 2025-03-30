@@ -1,0 +1,91 @@
+#!/usr/bin/env ruby
+
+require "optparse"
+
+def setup
+  log "Installing gems"
+  # Only do bundle install if the much-faster
+  # bundle check indicates we need to
+  system! "bundle check || bundle install"
+
+  log "Dropping & recreating the development database"
+  # Note that  the very first time this runs, db:reset
+  # will fail, but this failure is fixed by
+  # doing a db:migrate
+  system!({ "RAILS_ENV" => "test" }, "bin/rails db:reset")
+
+  log "All set up."
+  log ""
+  log "To see commonly-needed commands, run:"
+  log ""
+  log "   bin.setup help"
+  log ""
+end
+
+def help
+  puts "Usage: #{$0}"
+  puts ""
+  puts "Install gems, recreates dev database, and generally"
+  puts "prepares the app to be run locally"
+  puts ""
+  puts "Other useful commands:"
+  puts ""
+  puts "  bin/dev"
+  puts "    # run app locally"
+  puts ""
+  puts "  bin/ci"
+  puts "    # runs all tests and checks as CI work"
+  puts ""
+  puts "  bin/rails test"
+  puts "    # run run non-system tests"
+  puts ""
+  puts "  bin/rails test:system"
+  puts "    #  run system tests"
+  puts ""
+  puts "  bin/setup help"
+  puts "    #  show this help"
+  puts ""
+end
+
+def system!(*args)
+  system(*args, exception: true)
+end
+
+# start of helpers
+
+# We don't want the setup method to have to do all this error
+# checking, and we also want to explicitly log what we are
+# executing. Thus we use this method instead of Kernel#system
+def system!(*args)
+  log "Executing: #{args}"
+  if system(*args)
+    log "#{args} succeeded"
+  else
+    log "#{args} failed"
+    abort
+  end
+end
+
+# It's helpful to know  what message came from this
+# script, so we'll use log instead of `puts`
+def log(message)
+  puts "[ bin/setup ] #{message}"
+end
+
+# end of helpers
+
+OptionParser.new do |parser|
+  parser.on("-h", "--help") do
+    help
+    exit
+  end
+end.parse!
+
+if ARGV[0] == "help"
+  help
+elsif !ARGV[0].nil?
+  puts "Unknown argument: #{ARGV[0]}"
+  exit 1
+else 
+  setup
+end

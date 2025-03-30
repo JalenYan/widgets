@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ "${1}" = -h ]     || \
+   [ "${1}" = --help ] || \
+   [ "${1}" = help ]; then
+  echo "Usage: ${0}"
+  echo
+  echo "Runs app for local development"
+  exit
+else
+  if [ ! -z "${1}" ]; then
+    echo "Unknown argument: '${1}'"
+    exit 1
+  fi
+fi
+
+# We must bind to 0.0.0.0 inside a
+# Docker container or the port won't forward
+bin/rails server --binding=0.0.0.0

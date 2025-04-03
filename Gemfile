@@ -43,6 +43,10 @@ gem "thruster", require: false
 # bundler-audit checks our dependencies for vulnerabilities
 gem "bundler-audit"
 
+# lograge changes Rails's logging to a more
+# traditional one-line-per-event format
+gem "lograge"
+
 group :development, :test do
 
   # All runtime configurations comes from the UNIX environment variables

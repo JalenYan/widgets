@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+# 设置脚本在遇到错误时立即退出
 set -e
 
+# 处理帮助信息
 if [ "${1}" = -h ]     || \
    [ "${1}" = --help ] || \
    [ "${1}" = help ]; then
@@ -10,26 +12,32 @@ if [ "${1}" = -h ]     || \
   echo "Runs all tests, quality, and security checks"
   exit
 else
+  # 检查是否有未知参数
   if [ ! -z "${1}" ]; then
     echo "Unknown argument: '${1}'"
     exit 1
   fi
 fi
 
+# 运行单元测试
 echo "[ bin/ci ] Running unit tests"
 bin/rails test
 
+# 运行系统测试
 echo "[ bin/ci ] Running system tests"
 bin/rails test:system
 
+# 使用 Brakeman 进行代码安全分析
 echo "[ bin/ci ] Analyzing code for security vulnerabilities."
 echo "[ bin/ci ] Output will be in tmp/brakeman.html, which"
 echo "[ bin/ci ] can be opened in your browser."
 
 bundle exec brakeman -q -o tmp/brakeman.html
 
+# 使用 bundler-audit 检查 gem 包的安全漏洞
 echo "[ bin/ci ] Analyzing Ruby gems for"
 echo "[ bin/ci ] security vulnerabilities"
 bundle exec bundler-audit check --update
 
+# 完成所有检查
 echo "[ bin/ci ] Done"

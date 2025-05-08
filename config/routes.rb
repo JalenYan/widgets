@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  resources :widgets, only: [ :show, :index ]
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
@@ -11,4 +13,18 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get "manufacturers/:id", to: "manufacturers#show"
+
+  ####
+  # Custom routes start here
+  #
+  # For each new custom route:
+  #
+  # * Be sure you have the canonical route declared above
+  # * Add the new custom route below the existing ones
+  # * Document why it's needed
+  # * Explain anything else non-standard
+
+  # used in podcast ads for the 'amazing' campaign
+  get "/amazing", to: redirect("/widgets")
 end

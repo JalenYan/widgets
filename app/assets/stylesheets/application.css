@@ -8,3 +8,9 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ .clear-float {
+    content: "";
+    display: table;
+    clear: both;
+ }

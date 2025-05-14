@@ -1,3 +1,21 @@
-<h1>Widget <%= @widget.id %></h1>
-<p>Manufacturer ID: <%= @widget.manufacturer_id %></p>
-<p>Name: <%= @widget.name %></p>
+<h1>Widget <%= @widget.name %></h1>
+<h2>ID #<%= @widget.id %></h2>
+
+<% if flash[:notice] %>
+    <aside>
+        <%= flash[:notice] %>
+    </aside>
+<% end %>
+
+<section>
+    <h3>Rate This Widget</h3>
+    <ol>
+        <% (1..5).each do |rating| %>
+            <li>
+                <%= button_to rating,
+                    widget_ratings_path,
+                    params: { widget_id: @widget.id, rating: rating } %>
+            </li>
+        <% end %>
+    </ol>
+</section>

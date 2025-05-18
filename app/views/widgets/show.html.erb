@@ -12,4 +12,4 @@
     out of <%= @widget.manufacturer.address.country %>
 </h3>
 
-<%= render partial: 'rating' %>
+<%= render partial: 'rating', locals: { widget: @widget } %>

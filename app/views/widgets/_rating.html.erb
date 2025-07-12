@@ -1,3 +1,4 @@
+<%# locals: (widget:, show_cta: true) %>
 <section>
     <h3 style="float: left; margin: 0; padding-right: 1rem;">Rate This Widget</h3>
     <ol style="list-style: none; padding: 0; margin: 0">
@@ -10,5 +11,7 @@
         <% end %>
     </ol>
     <div class="clear-float"></div>
-    <p>Your ratings helps us be amazing!</p>
+    <% if show_cta %>
+        <p>Your ratings helps us be amazing!</p>
+    <% end %>
 </section>

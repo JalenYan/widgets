@@ -47,8 +47,11 @@ gem "bundler-audit"
 # traditional one-line-per-event format
 gem "lograge"
 
-group :development, :test do
+# View Component is used to manage
+# and test complex view logic
+gem "view_component"
 
+group :development, :test do
   # All runtime configurations comes from the UNIX environment variables
   # but we use dotenv to store that in files for
   # development and testing

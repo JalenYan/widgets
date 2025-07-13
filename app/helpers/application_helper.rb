@@ -3,6 +3,6 @@ module ApplicationHelper
   # never build strings using interpolation or concatenation.
   # Try to always use Rails’ helper methods to create your markup
   def styled_widget_id(widget)
-    content_tag(:span, widget.widget_id, style: "font-family: monospace")
+    content_tag(:span, widget.widget_id.to_s.rjust(7, "0"), style: "font-family: monospace")
   end
 end

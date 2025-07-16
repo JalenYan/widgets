@@ -1,16 +1,92 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+:root {
+  --color-black: #010101;
+  --color-white: #FDFDFD;
+  --color-red:   #640600;
+  --color-blue:  #004E9E;
+  --spacing-min: 0.25rem;
+}
 
- .clear-float {
-    content: "";
-    display: table;
-    clear: both;
- }
+/* Typography */
+body {
+  font-family: Avenir,
+               Montserrat,
+               Corbel,
+               'URW Gothic',
+               source-sans-pro,
+               sans-serif;
+}
+
+code        { font-family: monospace; }
+
+.f-4        { font-size: 2.2rem;  }
+.f-3        { font-size: 1.3rem;  }
+.f-2, .body { font-size: 1rem;    }
+.f-1        { font-size: 0.8rem;  }
+
+.fs-italic  { font-style: italic; }
+.fw-4       { font-weight: 400;   }
+.fw-b       { font-weight: bold;  }
+
+.tr         { text-align: right;  }
+/* End Typography */
+
+/* Spacings */
+.ma-0 { margin: 0; }
+.ma-1 { margin:           var(--spacing-min);  }
+.ma-2 { margin: calc( 4 * var(--spacing-min)); }
+.ma-3 { margin: calc( 8 * var(--spacing-min)); }
+.ma-4 { margin: calc(16 * var(--spacing-min)); }
+
+.pa-0 { padding: 0; }
+.pa-1 { padding:           var(--spacing-min);  }
+.pa-2 { padding: calc( 4 * var(--spacing-min)); }
+.pa-3 { padding: calc( 8 * var(--spacing-min)); }
+.pa-4 { padding: calc(16 * var(--spacing-min)); }
+/* End Spacings */
+
+/* Colors */
+.black    { color: var(--color-black);            } 
+.white    { color: var(--color-white);            } 
+.red      { color: var(--color-red);              } 
+.blue     { color: var(--color-blue);             } 
+.bg-black { background-color: var(--color-black); } 
+.bg-white { background-color: var(--color-white); } 
+.bg-red   { background-color: var(--color-red);   } 
+.bg-blue  { background-color: var(--color-blue);  } 
+.bc-black { border-color: var(--color-black);     } 
+.bc-white { border-color: var(--color-white);     } 
+.bc-red   { border-color: var(--color-red);       } 
+.bc-blue  { border-color: var(--color-blue);      } 
+/* End Colors */
+/* Utilities */
+.dib   { display: inline-block; }
+.db    { display: block;        }
+.dn    { display: none;         }
+.w-100 { width: 100%;           }
+.br    {
+  border-radius: calc(4 * var(--spacing-min));
+}
+
+.clear-floats:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.ba  {
+  border-style: solid;
+  border-width: thin;
+}
+/* End Utilities */
+/* START:edit:3 */
+
+widget-rating {
+  display: block;
+}
+widget-rating         [role=status] {
+  display: none;
+}
+widget-rating[rating] [role=status] {
+  display: block;
+}
+/* END:edit:3 */

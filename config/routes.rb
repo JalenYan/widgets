@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :widgets, only: [ :show, :index ]
   resources :widget_ratings, only: [ :create ]
+  if Rails.env.development?
+    resources :design_system_docs, only: [ :index ]
+  end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

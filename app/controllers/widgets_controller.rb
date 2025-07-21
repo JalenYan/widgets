@@ -10,10 +10,13 @@ class WidgetsController < ApplicationController
         country: "CN"
       )
     )
+
+    widget_name = params[:id].to_i == 1234 ? "Stembolt" : "Widget #{params[:id]}"
+
     @widget = OpenStruct.new(
       id: params[:id],
       manufacturer_id: manufacturer.id,
-      name: "Widget #{params[:id]}",
+      name: widget_name,
       manufacturer: manufacturer
     )
 
@@ -28,6 +31,9 @@ class WidgetsController < ApplicationController
   end
 
   def index
-    @widgets = (1..10).map { |id| OpenStruct.new(id: id, manufacturer_id: rand(100), name: "Widget #{id}") }
+    @widgets = [
+      OpenStruct.new(id: 1234, name: "Stembolt"),
+      OpenStruct.new(id: 2, name: "Flux Capacitor")
+    ]
   end
 end

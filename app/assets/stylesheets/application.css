@@ -45,18 +45,18 @@ code        { font-family: monospace; }
 /* End Spacings */
 
 /* Colors */
-.black    { color: var(--color-black);            } 
-.white    { color: var(--color-white);            } 
-.red      { color: var(--color-red);              } 
-.blue     { color: var(--color-blue);             } 
-.bg-black { background-color: var(--color-black); } 
-.bg-white { background-color: var(--color-white); } 
-.bg-red   { background-color: var(--color-red);   } 
-.bg-blue  { background-color: var(--color-blue);  } 
-.bc-black { border-color: var(--color-black);     } 
-.bc-white { border-color: var(--color-white);     } 
-.bc-red   { border-color: var(--color-red);       } 
-.bc-blue  { border-color: var(--color-blue);      } 
+.black    { color: var(--color-black);            }
+.white    { color: var(--color-white);            }
+.red      { color: var(--color-red);              }
+.blue     { color: var(--color-blue);             }
+.bg-black { background-color: var(--color-black); }
+.bg-white { background-color: var(--color-white); }
+.bg-red   { background-color: var(--color-red);   }
+.bg-blue  { background-color: var(--color-blue);  }
+.bc-black { border-color: var(--color-black);     }
+.bc-white { border-color: var(--color-white);     }
+.bc-red   { border-color: var(--color-red);       }
+.bc-blue  { border-color: var(--color-blue);      }
 /* End Colors */
 /* Utilities */
 .dib   { display: inline-block; }
@@ -78,15 +78,15 @@ code        { font-family: monospace; }
   border-width: thin;
 }
 /* End Utilities */
-/* START:edit:3 */
 
 widget-rating {
   display: block;
 }
+/* <widget-rating>内部所有 [role=status] 的元素 */
 widget-rating         [role=status] {
   display: none;
 }
+/* 当 <widget-rating>元素带有 rating 属性时，其内部的 [role=status] 元素 */
 widget-rating[rating] [role=status] {
   display: block;
 }
-/* END:edit:3 */

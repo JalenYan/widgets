@@ -193,7 +193,7 @@ CREATE TABLE public.widgets (
     id bigint NOT NULL,
     name text NOT NULL,
     price_cents integer NOT NULL,
-    widget_statuse_id bigint NOT NULL,
+    widget_status_id bigint NOT NULL,
     manufacturer_id bigint NOT NULL,
     created_at timestamp(6) with time zone NOT NULL,
     updated_at timestamp(6) with time zone NOT NULL,
@@ -223,10 +223,10 @@ COMMENT ON COLUMN public.widgets.price_cents IS 'The price of the widget in cent
 
 
 --
--- Name: COLUMN widgets.widget_statuse_id; Type: COMMENT; Schema: public; Owner: -
+-- Name: COLUMN widgets.widget_status_id; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.widgets.widget_statuse_id IS 'The current status of the widget';
+COMMENT ON COLUMN public.widgets.widget_status_id IS 'The current status of the widget';
 
 
 --
@@ -388,10 +388,10 @@ COMMENT ON INDEX public.index_widgets_on_name_and_manufacturer_id IS 'No manufac
 
 
 --
--- Name: index_widgets_on_widget_statuse_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_widgets_on_widget_status_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_widgets_on_widget_statuse_id ON public.widgets USING btree (widget_statuse_id);
+CREATE INDEX index_widgets_on_widget_status_id ON public.widgets USING btree (widget_status_id);
 
 
 --
@@ -403,19 +403,19 @@ ALTER TABLE ONLY public.manufacturers
 
 
 --
--- Name: widgets fk_rails_7c4d84b80d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.widgets
-    ADD CONSTRAINT fk_rails_7c4d84b80d FOREIGN KEY (widget_statuse_id) REFERENCES public.widget_statuses(id);
-
-
---
 -- Name: widgets fk_rails_c844384a2b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.widgets
     ADD CONSTRAINT fk_rails_c844384a2b FOREIGN KEY (manufacturer_id) REFERENCES public.manufacturers(id);
+
+
+--
+-- Name: widgets fk_rails_eb3d987080; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.widgets
+    ADD CONSTRAINT fk_rails_eb3d987080 FOREIGN KEY (widget_status_id) REFERENCES public.widget_statuses(id);
 
 
 --

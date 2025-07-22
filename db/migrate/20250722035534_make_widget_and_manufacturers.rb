@@ -27,7 +27,7 @@ class MakeWidgetAndManufacturers < ActiveRecord::Migration[8.0]
     create_table :widgets, comment: "the stuff we sell" do |t|
       t.text :name, null: false, comment: "The name of the widget"
       t.integer :price_cents, null: false, comment: "The price of the widget in cents"
-      t.references :widget_statuse, null: false, index: true, foreign_key: true, comment: "The current status of the widget"
+      t.references :widget_status, null: false, index: true, foreign_key: true, comment: "The current status of the widget"
       t.references :manufacturer, null: false, index: true, foreign_key: true, comment: "The maker of the widget"
 
       t.timestamps null: false

@@ -52,6 +52,14 @@ gem "lograge"
 gem "view_component"
 
 group :development, :test do
+  # We use Factory Bot in place of fixtures
+  # to genetate realistic test data
+  gem "factory_bot_rails"
+
+  # We use Faker to generate values for attributes
+  # in each factory
+  gem "faker"
+
   # All runtime configurations comes from the UNIX environment variables
   # but we use dotenv to store that in files for
   # development and testing

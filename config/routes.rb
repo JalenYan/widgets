@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :widgets, only: [ :show, :index ]
+  resources :widgets, only: [ :show, :index, :new, :create ]
   resources :widget_ratings, only: [ :create ]
   if Rails.env.development?
     resources :design_system_docs, only: [ :index ]

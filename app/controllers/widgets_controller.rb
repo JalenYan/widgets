@@ -1,6 +1,16 @@
 require "ostruct"
 
 class WidgetsController < ApplicationController
+
+  def new
+    @widget = Widget.new
+    @manufacturers = Manufacturer.all
+  end
+
+  def create
+    render plain: "Thanks"
+  end
+
   def show
     manufacturer = OpenStruct.new(
       id: rand(100),

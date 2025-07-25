@@ -1,20 +1,26 @@
 <section class="helvetica pa-3">
   <h1>New Widget</h1>
+  <% if @widget.errors.present? %>
+    <p role="alert"
+      class="pa-2 ba br bc-red red fw-b ma-2">
+      The data you provided is not valid.
+    </p>
+  <% end %>
   <%= form_with model: @widget do |f| %>
     <div class="ma-3">
       <%= f.text_field :name, class: "db w-100 pa-2 ma-1", autofocus: true, placeholder: "e.g. Stembolt" %>
-      <%= f.label :name, class: "fw-4 fs-italic" %>
+      <%= render LabelWithErrorComponent.new(record: @widget, field_name: :name, form: f) %>
     </div>
     <div class="ma-3">
       <%= f.number_field :price_cents, class: "db w-100 pa-2 ma-1", placeholder: "e.g. 123.45" %>
-      <%= f.label :price_cents, class: "fw-4 fs-italic" %>
+      <%= render LabelWithErrorComponent.new(record: @widget, field_name: :price_cents, form: f) %>
     </div>
     <div class="ma-3">
       <%= f.select :manufacturer_id,
         options_from_collection_for_select(@manufacturers.sort_by(&:name), :id, :name),
         { include_blank: "-- Choose --" },
         { class: "db w-100 pa-2 ma-1" } %>
-      <%= f.label :manufacturer_id, class: "fw-4 fs-italic" %>
+      <%= render LabelWithErrorComponent.new(record: @widget, field_name: :manufacturer_id, form: f) %>
     </div>
     <div class="tr">
       <%= f.submit "Create", class: "ba br pa-2 white bg-blue" %>

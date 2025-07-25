@@ -12,6 +12,12 @@ class WidgetsController < ApplicationController
       :name, :price_cents, :manufacturer_id
     )
 
+    if widget_params[:price_cents].present?
+      widget_params[:price_cents] = (
+        BigDecimal(widget_params[:price_cents]) * 100
+      ).to_i
+    end
+
     result = WidgetCreator.new.create_widget(Widget.new(widget_params))
 
     if result.created?

@@ -18,6 +18,7 @@ class CreateWidgetTest < BrowserSystemTestCase
     click_on "Create"
 
     assert_selector "[data-testid='widget-name']", text: "Stembolt"
+    assert_equal 123_00, Widget.last.price_cents
   end
 
   test "we can see validation errors" do

@@ -1,7 +1,6 @@
 require "ostruct"
 
 class WidgetsController < ApplicationController
-
   def new
     @widget = Widget.new
     @manufacturers = Manufacturer.all

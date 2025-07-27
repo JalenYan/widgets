@@ -14,6 +14,10 @@ def setup
   # doing a db:migrate
   system!({ "RAILS_ENV" => "test" }, "bin/rails db:reset")
 
+  # https://github.com/ddollar/foreman/wiki/Don't-Bundle-Foreman
+  log "Installing foreman"
+  system! "gem install foreman"
+
   log "All set up."
   log ""
   log "To see commonly-needed commands, run:"
@@ -90,6 +94,6 @@ if ARGV[0] == "help"
 elsif !ARGV[0].nil?
   puts "Unknown argument: #{ARGV[0]}"
   exit 1
-else 
+else
   setup
 end

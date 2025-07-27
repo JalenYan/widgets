@@ -47,6 +47,9 @@ gem "bundler-audit"
 # traditional one-line-per-event format
 gem "lograge"
 
+#  Sidekiq handles background jobs
+gem "sidekiq"
+
 # View Component is used to manage
 # and test complex view logic
 gem "view_component"

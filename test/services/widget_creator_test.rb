@@ -2,6 +2,7 @@ require "test_helper"
 
 class WidgetCreatorTest < ActiveSupport::TestCase
   setup do
+    Sidekiq::Testing.inline!
     ActionMailer::Base.deliveries = []
 
     @widget_creator = WidgetCreator.new
@@ -9,6 +10,10 @@ class WidgetCreatorTest < ActiveSupport::TestCase
 
     FactoryBot.create(:widget_status)
     FactoryBot.create(:widget_status, name: "Fresh")
+  end
+
+  teardown do
+    Sidekiq::Testing.fake! # the default setting
   end
 
   test "widgets have a default status of 'Fresh'" do

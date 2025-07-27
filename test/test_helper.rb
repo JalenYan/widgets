@@ -1,6 +1,11 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+
+# Set up Sidekiq testing modes. See
+# https://github.com/mperham/sidekiq/wiki/Testing
+require "sidekiq/testing"
+
 Capybara.configure do |config|
   # This allows helpers like click_on to locate
   # any object by data-testid in addtion to

@@ -17,8 +17,11 @@ class WidgetsControllerTest < ActionDispatch::IntegrationTest
     }
 
     widget = Widget.last
-    refute_nil widget
-    assert_redirected_to widget_url(widget)
+    confidence_check do
+      refute_nil widget
+      assert_redirected_to widget_url(widget)
+    end
+
     assert_equal 12345, widget.price_cents
   end
 end

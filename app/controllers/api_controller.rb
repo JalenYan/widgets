@@ -1,6 +1,12 @@
 class ApiController < ApplicationController
-  skip_before_action :require_login # or whatever callback was
+  before_action :authenticate
 
-  http_basic_authenticate_with name: ENV["API_USERNAME"],
-                               password: ENV["API_PASSWORD"]
+  private
+
+  def authenticate
+    # Authorization: Token <key>
+    authenticate_or_request_with_http_token do |token, options|
+      ApiKey.find_by(key: token, deactivated_at: nil).present?
+    end
+  end
 end

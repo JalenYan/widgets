@@ -10,7 +10,7 @@
 
 <h3>
     Built by <%= @widget.manufacturer.name %>
-    out of <%= @widget.manufacturer.address %>
+    out of <%= @widget.manufacturer.address.street %>
 </h3>
 
 <%= render(WigetRatingComponent.new(widget: @widget, show_cta: true)) %>

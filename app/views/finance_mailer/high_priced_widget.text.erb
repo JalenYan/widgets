@@ -1,1 +1,5 @@
+A new high-priced widget has been created!
+
 <%= @widget.name %>
+by <%= @widget.manufacturer.name %>
+Price: <%= number_to_currency(@widget.price_cents / 100) %>

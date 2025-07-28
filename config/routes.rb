@@ -7,6 +7,14 @@ Rails.application.routes.draw do
     resources :design_system_docs, only: [ :index ]
   end
 
+  # All API endpoints should go in this namespace.
+  # If you need a custom route to an API endpoint,
+  # add it in the custom routes section, but make
+  # sure the resource-based route is here.
+  namespace :api do
+    resources :widgets, only: [ :show ]
+  end
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check

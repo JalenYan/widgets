@@ -39,7 +39,7 @@ class Widget < ApplicationRecord
   def as_json(options = {})
     options[:methods] ||= [ :user_facing_identifier ]
     options[:except] ||= [ :widget_status_id ]
-
+    options[:include] ||= [ :widget_status ]
     super(options)
   end
 end
